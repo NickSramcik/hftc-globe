@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>loading</title>
+<!-- HFTC campus snow globe, PS1 style. Built by ../blender/build.py from ../../site/site.json. -->
+<style>
+  html, body { margin: 0; height: 100%; background: #05060f; overflow: hidden; }
+  canvas { display: block; width: 100vw; height: 100vh; touch-action: none; image-rendering: pixelated; }
+  #ui {
+    position: fixed; left: 0; right: 0; bottom: 0; display: flex; flex-wrap: wrap; gap: 6px;
+    justify-content: center; padding: 10px; padding-bottom: max(10px, env(safe-area-inset-bottom));
+    font: 13px/1 ui-monospace, Menlo, monospace; pointer-events: none;
+  }
+  #ui > * { pointer-events: auto; }
+  button, a.btn {
+    font: inherit; color: #ffe7b0; background: #1b1d3acc; border: 2px solid #ff9a2e;
+    padding: 8px 12px; cursor: pointer; text-decoration: none; text-transform: uppercase;
+    letter-spacing: 1px; -webkit-tap-highlight-color: transparent;
+  }
+  button.off { color: #8a8db0; border-color: #4a4d70; }
+  #hint {
+    position: fixed; top: 10px; left: 0; right: 0; text-align: center; color: #9aa3d6;
+    font: 12px ui-monospace, Menlo, monospace; letter-spacing: 1px; pointer-events: none;
+    transition: opacity 1s;
+  }
+</style>
+<script type="importmap">
+  { "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/addons/" } }
+</script>
+</head>
+<body>
+<div id="hint">drag to orbit · pinch or wheel to zoom · tap to shake</div>
+<div id="ui">
+  <button id="ps1">PS1 on</button>
+  <button id="weather">weather: snow</button>
+  <button id="shake">shake</button>
+  <a class="btn" id="glb" href="assets/hftc_globe.glb" download>export .glb</a>
+</div>
+<script type="module" src="main.js"></script>
+<script>
+  // Opened as a file (Finder, sshfs mount): module scripts and the model
+  // fetch are blocked, so say how to open it instead of showing black.
+  if (location.protocol === 'file:') document.body.innerHTML =
+    '<p style="color:#ffe7b0;font:16px ui-monospace,monospace;padding:24px;line-height:1.5">' +
+    'This page has to be served, not opened as a file.<br>Open ' +
+    '<a style="color:#ff9a2e" href="https://nicksramcik.github.io/hftc-globe/">' +
+    'https://nicksramcik.github.io/hftc-globe/</a>.</p>';
+</script>
+</body>
+</html>
